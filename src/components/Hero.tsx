@@ -43,7 +43,7 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7 }}
                     >
-                        Md. Fayjul Islam <span className={styles.highlight}>Bappi</span>
+                        Md Fayjul Islam <span className={styles.highlight}>Bappi</span>
                     </motion.h1>
                     <div className={styles.sliderContainer}>
                         <AnimatePresence mode="wait">

@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
 
 export const metadata: Metadata = {
-  title: 'Md. Fayjul Islam Bappi | Portfolio',
+  title: 'Md Fayjul Islam Bappi',
   description: 'Frontend Developer & MERN Stack Specialist',
 }
 
