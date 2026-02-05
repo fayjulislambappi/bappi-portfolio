@@ -5,7 +5,7 @@
     width: 100%;
     height: 100vh;
     background: #000;
-    z-index: 9999;
+    z-index: 999999;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,7 +46,7 @@
     .logoContainer {
         font-size: 3rem;
     }
-    
+
     .dot {
         font-size: 3.5rem;
     }
