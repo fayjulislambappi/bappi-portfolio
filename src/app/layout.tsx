@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Outfit } from 'next/font/google'
+import SpiderCursor from '@/components/SpiderCursor'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -17,7 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <SpiderCursor />
+        {children}
+      </body>
     </html>
   )
 }
