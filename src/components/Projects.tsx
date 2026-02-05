@@ -78,7 +78,7 @@ export default function Projects() {
                                     fill
                                     className={styles.projectImage}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    priority={index < 2}
+                                    priority={index <= 2}
                                     quality={80}
                                 />
                                 <div className={styles.overlay}>
