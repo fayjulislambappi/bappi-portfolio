@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: var(--nav-height);
-    z-index: 1000;
+    z-index: 99999;
     transition: all 0.3s ease;
     backdrop-filter: blur(0px);
     background: transparent;
