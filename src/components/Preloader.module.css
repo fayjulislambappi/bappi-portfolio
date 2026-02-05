@@ -1,0 +1,53 @@
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.logoContainer {
+    overflow: hidden;
+    display: flex;
+    align-items: baseline;
+    font-family: var(--font-heading);
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -2px;
+}
+
+.text {
+    color: #fff;
+    display: inline-block;
+}
+
+.dot {
+    color: var(--accent-primary);
+    display: inline-block;
+    font-size: 6rem;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .logoContainer {
+        font-size: 3rem;
+    }
+    
+    .dot {
+        font-size: 3.5rem;
+    }
+}

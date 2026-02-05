@@ -1,0 +1,76 @@
+.skills {
+    padding: 100px 0;
+    min-height: 80vh;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.heading {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.highlight {
+    color: var(--accent-primary);
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.categoryTitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-primary);
+    transform: translateY(-5px);
+}
+
+.icon {
+    font-size: 2.5rem;
+    color: var(--accent-primary);
+}
+
+.name {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+}
