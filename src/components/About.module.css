@@ -23,6 +23,7 @@
     position: relative;
     /* Align image to the optical bottom relative to text */
     align-items: flex-end;
+    z-index: 10000;
 }
 
 .imageContainer {
