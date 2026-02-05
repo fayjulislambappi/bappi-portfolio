@@ -1,15 +1,17 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
-  
+
   /* Premium Palette */
-  --accent-primary: #00f0ff; /* Neon Cyan */
-  --accent-secondary: #7000ff; /* Deep Neon Purple */
+  --accent-primary: #00f0ff;
+  /* Neon Cyan */
+  --accent-secondary: #7000ff;
+  /* Deep Neon Purple */
   --accent-glow: rgba(0, 240, 255, 0.5);
-  
+
   --surface-dark: #111111;
   --surface-light: rgba(255, 255, 255, 0.05);
-  
+
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 
@@ -30,6 +32,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-body);
   scroll-behavior: smooth;
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
 
 a {
