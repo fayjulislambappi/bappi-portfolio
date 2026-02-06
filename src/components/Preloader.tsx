@@ -12,7 +12,7 @@ export default function Preloader() {
         const hasLoaded = sessionStorage.getItem('preloaderShown')
 
         if (hasLoaded) {
-            setIsLoading(false)
+            setTimeout(() => setIsLoading(false), 0)
         } else {
             // Only lock scroll if actually loading
             document.body.style.overflow = 'hidden'
@@ -21,7 +21,7 @@ export default function Preloader() {
                 setIsLoading(false)
                 document.body.style.overflow = 'unset'
                 sessionStorage.setItem('preloaderShown', 'true')
-            }, 2200)
+            }, 3500)
             return () => {
                 clearTimeout(timer)
                 document.body.style.overflow = 'unset'

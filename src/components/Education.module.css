@@ -17,6 +17,17 @@
     margin-bottom: 4rem;
 }
 
+@media (max-width: 768px) {
+    .education {
+        padding: 60px 0;
+    }
+
+    .heading {
+        font-size: 2.2rem;
+        margin-bottom: 3rem;
+    }
+}
+
 .highlight {
     color: var(--accent-primary);
 }
@@ -107,23 +118,72 @@
     font-family: monospace;
 }
 
+[data-theme='light'] .degree {
+    color: var(--foreground);
+}
+
+[data-theme='light'] .year {
+    color: var(--text-secondary);
+}
+
+[data-theme='light'] .cardContent {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='light'] .heading {
+    color: var(--foreground);
+}
+
 .desc {
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-    .timeline::before {
+    .line {
         left: 20px;
+        transform: translateX(-50%);
     }
 
     .cardContent {
         width: calc(100% - 60px);
         margin-left: 60px !important;
         text-align: left !important;
+        padding: 1.5rem;
     }
 
     .dot {
         left: 20px;
+        transform: translateX(-50%);
+    }
+
+    .degree {
+        font-size: 1.2rem;
+    }
+
+    .institution {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cardContent {
+        width: calc(100% - 40px);
+        margin-left: 40px !important;
+        padding: 1.2rem;
+    }
+
+    .line,
+    .dot {
+        left: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .heading {
+        font-size: 1.8rem;
     }
 }

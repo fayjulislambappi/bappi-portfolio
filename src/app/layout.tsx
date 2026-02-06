@@ -11,16 +11,25 @@ export const metadata: Metadata = {
   description: 'Frontend Developer & MERN Stack Specialist',
 }
 
+import { ThemeProvider } from '@/components/ThemeProvider'
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
       <body className={inter.className}>
-        <SpiderCursor />
-        {children}
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SpiderCursor />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

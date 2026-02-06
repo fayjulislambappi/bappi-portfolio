@@ -99,6 +99,43 @@
     margin-bottom: 2rem;
 }
 
+[data-theme='light'] .text {
+    color: var(--text-secondary);
+}
+
+[data-theme='light'] .heading {
+    color: var(--foreground);
+}
+
+[data-theme='light'] .input,
+[data-theme='light'] .textarea {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    color: var(--foreground);
+}
+
+[data-theme='light'] .input:focus,
+[data-theme='light'] .textarea:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+[data-theme='light'] .socialCard {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme='light'] .socialCard:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='light'] .linkName {
+    color: var(--foreground);
+}
+
 .socialGrid {
     display: flex;
     gap: 1.5rem;
@@ -128,4 +165,58 @@
     font-size: 0.8rem;
     color: #fff;
     font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .contact {
+        padding: 60px 0;
+    }
+
+    .heading {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .contentWrapper {
+        gap: 3rem;
+    }
+
+    .socialGrid {
+        gap: 1.2rem;
+    }
+
+    .socialCard {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .formContainer,
+    .socialContainer {
+        min-width: 100%;
+    }
+
+    .socialGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .socialCard {
+        width: 100%;
+        height: 90px;
+    }
+}
+
+@media (max-width: 360px) {
+    .heading {
+        font-size: 1.8rem;
+    }
+
+    .text {
+        font-size: 1rem;
+    }
 }

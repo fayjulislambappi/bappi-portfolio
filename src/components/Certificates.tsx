@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { FaCertificate, FaTrophy } from 'react-icons/fa'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { FaCertificate, FaTrophy, FaTimes, FaArrowLeft } from 'react-icons/fa'
 import Image from 'next/image'
 import styles from './Certificates.module.css'
 
@@ -37,7 +38,7 @@ const cocurricularActivities = [
         title: 'International AWS Cloud Day Volunteering',
         issuer: 'Daffodil International University',
         date: '2023',
-        image: '/images/placeholder.svg'
+        image: '/images/AWS Cloud Day Volunteer Certificate.jpg'
     },
     {
         title: 'Youth Leadership Bootcamp',
@@ -46,14 +47,16 @@ const cocurricularActivities = [
         image: '/images/placeholder.svg'
     },
     {
-        title: 'Teaching Apprentice Fellowship',
+        title: 'Teaching Apprentice Fellowship Volunteering',
         issuer: 'Daffodil International University',
         date: '2023',
-        image: '/images/placeholder.svg'
+        image: '/images/TAF Volunteer Certificate.jpg'
     }
 ]
 
 export default function Certificates() {
+    const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
     return (
         <section id="certificates" className={styles.certificates}>
             <div className={styles.container}>
@@ -84,6 +87,8 @@ export default function Certificates() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             viewport={{ once: true }}
+                            onClick={() => cert.image && setSelectedImage(cert.image)}
+                            style={{ cursor: cert.image ? 'pointer' : 'default' }}
                         >
                             {cert.image ? (
                                 <div className={styles.cardImageContainer}>
@@ -126,6 +131,8 @@ export default function Certificates() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             viewport={{ once: true }}
+                            onClick={() => activity.image && setSelectedImage(activity.image)}
+                            style={{ cursor: activity.image ? 'pointer' : 'default' }}
                         >
                             {activity.image ? (
                                 <div className={styles.cardImageContainer}>
@@ -149,6 +156,54 @@ export default function Certificates() {
                     ))}
                 </div>
             </div>
+
+            {/* Image Modal */}
+            <AnimatePresence>
+                {selectedImage && (
+                    <motion.div
+                        className={styles.modalOverlay}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setSelectedImage(null)}
+                    >
+                        <button
+                            className={styles.backButton}
+                            onClick={() => setSelectedImage(null)}
+                            title="Back"
+                        >
+                            <FaArrowLeft />
+                        </button>
+
+                        <button
+                            className={styles.closeButton}
+                            onClick={() => setSelectedImage(null)}
+                            title="Close"
+                        >
+                            <FaTimes />
+                        </button>
+
+                        <motion.div
+                            className={styles.modalContent}
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                        >
+                            <div style={{ position: 'relative', width: 'auto', height: 'auto' }}>
+                                <Image
+                                    src={selectedImage}
+                                    alt="Certificate Full View"
+                                    width={1200}
+                                    height={800}
+                                    className={styles.modalImage}
+                                    priority
+                                />
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     )
 }

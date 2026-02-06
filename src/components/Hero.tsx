@@ -1,9 +1,11 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { FaPalette, FaGamepad, FaRocket, FaCode } from 'react-icons/fa'
 import styles from './Hero.module.css'
+import ThemeToggle from './ThemeToggle'
 
 const roles = [
     "Front-end Developer",
@@ -15,12 +17,27 @@ const roles = [
 export default function Hero() {
     const [index, setIndex] = useState(0)
 
+    const shimmerProgress = useMotionValue(0)
+    const backgroundPosition = useTransform(shimmerProgress, (v) => `${v}% center`)
+
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % roles.length)
         }, 3000)
-        return () => clearInterval(interval)
-    }, [])
+
+        // Persistent Shimmer Logic - Animating 0 to 150 for a 300% background width
+        const controls = animate(shimmerProgress, [0, 150], {
+            duration: 4,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop"
+        })
+
+        return () => {
+            clearInterval(interval)
+            controls.stop()
+        }
+    }, [shimmerProgress])
 
     return (
         <section id="hero" className={styles.hero}>
@@ -55,7 +72,13 @@ export default function Hero() {
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <span className={styles.gradientText}>{roles[index]}</span>
+                                <motion.span
+                                    className={styles.gradientText}
+                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                    style={{ backgroundPosition: backgroundPosition as any }}
+                                >
+                                    {roles[index]}
+                                </motion.span>
                             </motion.h2>
                         </AnimatePresence>
                     </div>
@@ -90,6 +113,82 @@ export default function Hero() {
                     animate={{ clipPath: 'inset(0 0 0 0)' }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                 >
+                    {/* Decorative Background Rings */}
+                    <div className={styles.ringContainer}>
+                        <motion.div
+                            className={`${styles.decorativeRing} ${styles.ring1}`}
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        />
+                        <motion.div
+                            className={`${styles.decorativeRing} ${styles.ring2}`}
+                            animate={{ rotate: -360 }}
+                            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                        />
+                    </div>
+
+                    {/* Tech Particles */}
+                    <div className={styles.particlesContainer}>
+                        {[...Array(6)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                className={styles.particle}
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{
+                                    opacity: [0.2, 0.5, 0.2],
+                                    scale: [1, 1.2, 1],
+                                    y: [0, -40, 0],
+                                    x: [0, (i % 2 === 0 ? 20 : -20), 0]
+                                }}
+                                transition={{
+                                    duration: 5 + i,
+                                    repeat: Infinity,
+                                    delay: i * 0.5
+                                }}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Floating Skill Icons */}
+                    <motion.div
+                        className={`${styles.iconCircle} ${styles.iconRocket}`}
+                        animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        title="High Performance"
+                    >
+                        <FaRocket />
+                    </motion.div>
+
+                    <motion.div
+                        className={`${styles.iconCircle} ${styles.iconCode}`}
+                        animate={{ y: [0, 15, 0], x: [0, -10, 0] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                        title="Clean Code"
+                    >
+                        <FaCode />
+                    </motion.div>
+
+                    <motion.div
+                        className={`${styles.iconCircle} ${styles.iconDesign}`}
+                        animate={{ y: [0, -12, 0], x: [0, -8, 0] }}
+                        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                        title="Graphics Designer"
+                    >
+                        <FaPalette />
+                    </motion.div>
+
+                    <motion.div
+                        className={`${styles.iconCircle} ${styles.iconGame}`}
+                        animate={{ y: [0, 12, 0], x: [0, 8, 0] }}
+                        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                        title="Pro Gamer"
+                    >
+                        <FaGamepad />
+                    </motion.div>
+
+                    <div className={styles.heroToggleWrapper}>
+                        <ThemeToggle />
+                    </div>
                     <div className={styles.imageContainer}>
                         <div className={styles.imageInner}>
                             <Image
@@ -97,6 +196,7 @@ export default function Hero() {
                                 alt="Md. Fayjul Islam Bappi"
                                 fill
                                 className={styles.image}
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 950px"
                                 priority
                             />
                         </div>

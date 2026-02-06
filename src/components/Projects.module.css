@@ -26,8 +26,20 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+@media (max-width: 850px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
 }
 
 .card {
@@ -87,6 +99,42 @@
     transform: scale(1.1);
 }
 
+@media (max-width: 768px) {
+    .projects {
+        padding: 60px 0;
+    }
+
+    .heading {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .cardContent {
+        padding: 1.2rem;
+    }
+
+    .projectTitle {
+        font-size: 1.3rem;
+    }
+
+    .links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .previewBtn,
+    .codeBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 .overlay {
     position: absolute;
     top: 0;
@@ -135,6 +183,34 @@
     line-height: 1.6;
     margin-bottom: 1.5rem;
     flex-grow: 1;
+}
+
+[data-theme='light'] .projectDesc {
+    color: var(--text-secondary);
+}
+
+[data-theme='light'] .projectTitle {
+    background: linear-gradient(to right, #0f172a, #334155);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[data-theme='light'] .card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='light'] .card:hover {
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.15);
+    border-color: var(--accent-primary);
+    background: #ffffff;
+}
+
+[data-theme='light'] .heading {
+    color: var(--foreground);
 }
 
 .techStack {

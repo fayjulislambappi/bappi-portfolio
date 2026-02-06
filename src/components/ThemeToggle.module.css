@@ -1,0 +1,54 @@
+.toggle {
+    background: var(--surface-light);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    color: var(--foreground);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.toggle:hover {
+    background: var(--accent-primary);
+    color: #fff;
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 8px 20px var(--accent-glow);
+    border-color: var(--accent-primary);
+}
+
+.placeholder {
+    width: 40px;
+    height: 40px;
+}
+
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.sunIcon,
+.moonIcon {
+    animation: rotateIn 0.5s ease;
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotate(-90deg) scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}

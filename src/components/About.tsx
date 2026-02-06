@@ -23,6 +23,7 @@ export default function About() {
                             alt="About Me"
                             fill
                             className={styles.image}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px"
                         />
                     </motion.div>
                 </motion.div>

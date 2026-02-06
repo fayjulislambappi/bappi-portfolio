@@ -2,6 +2,41 @@
 
 import { useEffect, useRef } from 'react'
 
+class Particle {
+    x: number
+    y: number
+    vx: number
+    vy: number
+    size: number
+    canvas: HTMLCanvasElement
+    ctx: CanvasRenderingContext2D
+
+    constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
+        this.canvas = canvas
+        this.ctx = ctx
+        this.x = Math.random() * canvas.width
+        this.y = Math.random() * canvas.height
+        this.vx = (Math.random() - 0.5) * 1.5
+        this.vy = (Math.random() - 0.5) * 1.5
+        this.size = Math.random() * 2 + 1
+    }
+
+    update() {
+        this.x += this.vx
+        this.y += this.vy
+
+        if (this.x < 0 || this.x > this.canvas.width) this.vx *= -1
+        if (this.y < 0 || this.y > this.canvas.height) this.vy *= -1
+    }
+
+    draw() {
+        this.ctx.fillStyle = 'rgba(0, 240, 255, 0.8)'
+        this.ctx.beginPath()
+        this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+        this.ctx.fill()
+    }
+}
+
 export default function SpiderCursor() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -14,7 +49,7 @@ export default function SpiderCursor() {
 
         let animationFrameId: number
         let particles: Particle[] = []
-        let mouse = { x: -100, y: -100 }
+        const mouse = { x: -100, y: -100 }
 
         // Resize canvas
         const resize = () => {
@@ -23,43 +58,11 @@ export default function SpiderCursor() {
             initParticles()
         }
 
-        class Particle {
-            x: number
-            y: number
-            vx: number
-            vy: number
-            size: number
-
-            constructor() {
-                this.x = Math.random() * canvas!.width
-                this.y = Math.random() * canvas!.height
-                this.vx = (Math.random() - 0.5) * 1.5
-                this.vy = (Math.random() - 0.5) * 1.5
-                this.size = Math.random() * 2 + 1
-            }
-
-            update() {
-                this.x += this.vx
-                this.y += this.vy
-
-                if (this.x < 0 || this.x > canvas!.width) this.vx *= -1
-                if (this.y < 0 || this.y > canvas!.height) this.vy *= -1
-            }
-
-            draw() {
-                if (!ctx) return
-                ctx.fillStyle = 'rgba(0, 240, 255, 0.8)'
-                ctx.beginPath()
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-                ctx.fill()
-            }
-        }
-
         const initParticles = () => {
             particles = []
             const numberOfParticles = (canvas.width * canvas.height) / 15000
             for (let i = 0; i < numberOfParticles; i++) {
-                particles.push(new Particle())
+                particles.push(new Particle(canvas, ctx))
             }
         }
 

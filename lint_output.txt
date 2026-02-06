@@ -1,0 +1,75 @@
+
+C:\Users\bappi\bappi-portfolio\src\components\Hero.tsx
+  40:8   warning  React Hook useEffect has a missing dependency: 'shimmerProgress'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  77:70  error    Unexpected any. Specify a different type                                                                            @typescript-eslint/no-explicit-any
+
+C:\Users\bappi\bappi-portfolio\src\components\HireMeModal.tsx
+  74:36  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  76:94  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  87:78  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\bappi\bappi-portfolio\src\components\Preloader.tsx
+  15:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\bappi\bappi-portfolio\src\components\Preloader.tsx:15:13
+  13 |
+  14 |         if (hasLoaded) {
+> 15 |             setIsLoading(false)
+     |             ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  16 |         } else {
+  17 |             // Only lock scroll if actually loading
+  18 |             document.body.style.overflow = 'hidden'  react-hooks/set-state-in-effect
+
+C:\Users\bappi\bappi-portfolio\src\components\SpiderCursor.tsx
+  17:13  error    'mouse' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             prefer-const
+  26:9   warning  Compilation Skipped: Inline `class` declarations are not supported
+
+Move class declarations outside of components/hooks.
+
+C:\Users\bappi\bappi-portfolio\src\components\SpiderCursor.tsx:26:9
+  24 |         }
+  25 |
+> 26 |         class Particle {
+     |         ^^^^^^^^^^^^^^^^
+> 27 |             x: number
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 28 |             y: number
+     ÔÇª
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 55 |             }
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 56 |         }
+     | ^^^^^^^^^^ Inline `class` declarations are not supported
+  57 |
+  58 |         const initParticles = () => {
+  59 |             particles = []
+
+  react-hooks/unsupported-syntax
+
+C:\Users\bappi\bappi-portfolio\src\components\ThemeToggle.tsx
+  14:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\bappi\bappi-portfolio\src\components\ThemeToggle.tsx:14:9
+  12 |     // Avoid hydration mismatch
+  13 |     useEffect(() => {
+> 14 |         setMounted(true)
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  15 |     }, [])
+  16 |
+  17 |     if (!mounted) {  react-hooks/set-state-in-effect
+
+Ô£û 9 problems (7 errors, 2 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

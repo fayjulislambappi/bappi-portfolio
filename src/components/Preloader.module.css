@@ -42,6 +42,14 @@
     line-height: 1;
 }
 
+[data-theme='light'] .preloader {
+    background: #f8fafc;
+}
+
+[data-theme='light'] .text {
+    color: #0f172a;
+}
+
 @media (max-width: 768px) {
     .logoContainer {
         font-size: 3rem;

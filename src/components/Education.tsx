@@ -62,7 +62,13 @@ export default function Education() {
                             transition={{ delay: index * 0.2 }}
                             viewport={{ once: true, margin: "-100px" }}
                         >
-                            <div className={styles.dot}></div>
+                            <motion.div
+                                className={styles.dot}
+                                initial={{ scale: 0 }}
+                                whileInView={{ scale: 1 }}
+                                transition={{ delay: index * 0.2 + 0.2 }}
+                                viewport={{ once: true }}
+                            ></motion.div>
                             <div className={styles.cardContent}>
                                 <h3 className={styles.degree}>{item.degree}</h3>
                                 <h4 className={styles.institution}>{item.institution}</h4>
